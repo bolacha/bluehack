@@ -16,7 +16,9 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     defaultZoom={8}
     defaultCenter={{ lat: -34.397, lng: 150.644 }}
   >
-    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+    <Marker position={{ lat: -34.397, lng: 150.644 }} />
+    <Marker position={{ lat: -37.397, lng: 140.644 }} />
+    <Marker position={{ lat: -39.397, lng: 130.644 }} />
   </GoogleMap>
 ))
 
@@ -57,29 +59,42 @@ export default class TabsBar extends React.Component {
     });
     };
 
+
+
   render() {
     return (
       <div>
 
-    <LineChart width={300} height={150} data={this.state.consumoCarro}
-        margin={{top: 20, right: 30, left: 20, bottom: 5}}>
+      <BarChart width={400} height={80} data={[
+        {name: 'Page A', pv: 2400, amt: 2400},
+        {name: 'Page B', pv: 1398, amt: 2210},
+        {name: 'Page C', pv: 9800, amt: 2290},
+        {name: 'Page D', pv: 3908, amt: 2000},
+        {name: 'Page E', pv: 4800, amt: 2181},
+        {name: 'Page F', pv: 3800, amt: 2500},
+        {name: 'Page G', pv: 4300, amt: 2100},
+        {name: 'Page C', pv: 9800, amt: 2290},
+        {name: 'Page D', pv: 3908, amt: 2000},
+        {name: 'Page E', pv: 4800, amt: 2181},
+        {name: 'Page F', pv: 3800, amt: 2500},
+        
+  ]}
+              margin={{top: 20, right: 30, left: 20, bottom: 5}}>
 
-     <CartesianGrid strokeDasharray="3 3"/>
-     <Tooltip/>
-     <XAxis dataKey="name"/>
-     <YAxis/>
-     <CartesianGrid strokeDasharray="3 3"/>
-     <Legend />
-     <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
-     <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-    </LineChart>
+
+
+
+         <Legend />
+         <Bar dataKey="pv" stackId="a" fill="#8884d8" />
+         <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+        </BarChart>
 
         <Tabs
           onChange={this.handleChange}
           value={this.state.slideIndex}
         >
-          <Tab label="Carro" value={0} />
-          <Tab label="Parceiros" value={1} />
+          <Tab label="Status" value={0} />
+          <Tab label="Dealers" value={1} />
         </Tabs>
         <SwipeableViews
           index={this.state.slideIndex}
@@ -87,7 +102,6 @@ export default class TabsBar extends React.Component {
         >
           <div style={styles.slide}>
             <Card>
-                <CardTitle title="Card title" subtitle="Card subtitle" />
                 <CardText>
                     Óleo
                     <Slider defaultValue={0.8} />
@@ -152,7 +166,7 @@ export default class TabsBar extends React.Component {
             isMarkerShown
             googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: `400px` }} />}
+            containerElement={<div style={{ height: `500px` }} />}
             mapElement={<div style={{ height: `100%` }} />}
           />
 

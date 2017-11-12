@@ -6,9 +6,10 @@ import AppBar from 'material-ui/AppBar';
  * By default, the left icon is a navigation-menu.
  */
 const AppBarExampleIcon = () => (
-  <AppBar
-    title="Title"
-    iconClassNameRight="muidocs-icon-navigation-expand-more"
+  <AppBar style={ { backgroundColor:'#D4D4D4'} }
+    title="Bruce Wayner"
+    iconElementLeft={<div></div>}
+    iconElementRight={<div></div>}
   />
 );
 
