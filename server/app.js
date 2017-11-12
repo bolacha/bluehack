@@ -30,17 +30,12 @@ var multipartMiddleware = multipart();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
 app.use(methodOverride());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/style', express.static(path.join(__dirname, '/views/style')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -90,7 +85,7 @@ function initDBConnection() {
 
 initDBConnection();
 
-app.get('/', routes.index);
+app.use('/', express.static(path.join(__dirname, '../build')));
 
 function createResponseData(id, name, value, attachments) {
 
