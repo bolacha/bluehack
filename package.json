@@ -4,18 +4,16 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0-beta.2",
-    "google-maps-react": "^1.1.2",
     "material-ui": "^0.19.4",
-    "moment": "^2.19.2",
     "popsicle": "^9.1.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-google-maps": "^9.2.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.13",
     "react-swipeable-views": "^0.12.10",
-    "recharts": "^1.0.0-beta.1",
-    "salad-ui": "^1.1.55"
+    "recharts": "^1.0.0-beta.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -3,13 +3,22 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import SwipeableViews from 'react-swipeable-views';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import Slider from 'material-ui/Slider';
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Pie, PieChart, Radar, RadarChart, PolarGrid, Legend,
+         PolarAngleAxis, PolarRadiusAxis} from 'recharts';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import CircularProgress from 'material-ui/CircularProgress';
 
+const MyMapComponent = withScriptjs(withGoogleMap((props) =>
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+  </GoogleMap>
+))
 
-
-const data = [
+const data02 = [
       {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
       {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
       {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
@@ -18,6 +27,10 @@ const data = [
       {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
       {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
 ];
+
+const data01 = [{name: 'Group A', value: 400}, {name: 'Group B', value: 300},
+                  {name: 'Group C', value: 300}, {name: 'Group D', value: 200},
+                  {name: 'Group E', value: 278}, {name: 'Group F', value: 189}]
 
 const CardExampleWithAvatar = () => (
   <Card>
@@ -32,17 +45,7 @@ const CardExampleWithAvatar = () => (
         Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
         <Slider defaultValue={0.9} />
 
-
     </CardText>
-
-    <BarChart width={280} height={90} data={data}>
-        <Bar dataKey='uv' fill='#8884d8'/>
-    </BarChart>
-
-    <CardActions>
-      <FlatButton label="Action1" />
-      <FlatButton label="Action2" />
-    </CardActions>
   </Card>
 );
 
@@ -79,9 +82,23 @@ export default class TabsBar extends React.Component {
   render() {
     return (
       <div>
-      <BarChart width={280} height={90} data={data}>
-          <Bar dataKey='uv' fill='#8884d8'/>
-      </BarChart>
+      <BarChart width={300} height={150} data={[
+            {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
+            {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
+            {name: 'Page C', uv: 2000, pv: 9800, amt: 2290},
+            {name: 'Page D', uv: 2780, pv: 3908, amt: 2000},
+            {name: 'Page E', uv: 1890, pv: 4800, amt: 2181},
+            {name: 'Page F', uv: 2390, pv: 3800, amt: 2500},
+            {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
+      ]}
+          margin={{top: 20, right: 30, left: 20, bottom: 5}}>
+
+     <CartesianGrid strokeDasharray="3 3"/>
+     <Tooltip/>
+     <Legend />
+     <Bar dataKey="pv" stackId="a" fill="#8884d8" />
+     <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+    </BarChart>
         <Tabs
           onChange={this.handleChange}
           value={this.state.slideIndex}
@@ -106,52 +123,63 @@ export default class TabsBar extends React.Component {
                     Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
                     <Slider defaultValue={0.9} />
 
+                    <Pie data={data02} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
+                </CardText>
+            </Card>
+            <Card>
+                <CardText>
+                <div>
+                    <div style={ { padding: '50px 20px 0 20px;', float:'left', position : 'relative', width: '100px'} }>
+                        <CircularProgress
+                            mode="determinate"
+                            value={75}
+                            size={70}
+                            thickness={5}
+                        />
+                    </div>
+                    <div style={ { padding: '50px 20px 0 20px;', float:'left', position : 'relative', width: '100px' } }>
+                        <CircularProgress
+                            mode="determinate"
+                            value={75}
+                            size={70}
+                            thickness={5}
+                        />
+                    </div>
+                    <div style={ { padding: '50px 20px 0 20px;', float:'left', position : 'relative', width: '100px' } }>
+                        <CircularProgress
+                            mode="determinate"
+                            value={75}
+                            size={70}
+                            thickness={5}
+                        />
+                    </div>
+                    <div style={ { padding: '50px 20px 0 20px;', float:'left', position : 'relative', width: '100px' } }>
+                        <CircularProgress
+                            mode="determinate"
+                            value={75}
+                            size={70}
+                            thickness={5}
+                        />
+                    </div>
+                </div>
+
 
                 </CardText>
-
-                <CardActions>
-                    <FlatButton label="Action1" />
-                    <FlatButton label="Action2" />
-                </CardActions>
             </Card>
           </div>
           <div style={styles.slide}>
-              <Map google={this.props.google} zoom={14}>
 
-              <Marker onClick={this.onMarkerClick}
-                      name={'Current location'} />
+          <MyMapComponent
+            isMarkerShown
+            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `400px` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
+          />
 
-              <InfoWindow onClose={this.onInfoWindowClose}>
-                  <div>
-                    <h1>{this.state.selectedPlace.name}</h1>
-                  </div>
-              </InfoWindow>
-            </Map>
           </div>
         </SwipeableViews>
       </div>
     );
   }
 }
-
-export class MapContainer extends Component {
-render() {
-    return (
-      <Map google={this.props.google} zoom={14}>
-
-        <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
-
-        <InfoWindow onClose={this.onInfoWindowClose}>
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
-        </InfoWindow>
-      </Map>
-    );
-  }
-}
-
-export class GoogleApiWrapper({
-  apiKey: (YOUR_GOOGLE_API_KEY_GOES_HERE)
-})(MapContainer)
