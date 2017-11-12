@@ -54,8 +54,15 @@ for i in range(len(dataSet)):
     for j in range(len(dataSet[0])-1):
         dataSet[i][j] = ( dataSet[i][j] - dataMins[0,j] ) / ( dataMaxs[0,j] - dataMins[0,j] )
 
+trainingSet = dataSet[1:-1]
+testSet = [dataSet[0][:-1],dataSet[-1][:-1]]
+
 import csv
 
-with open('engineDataset.csv', 'w') as myfile:
-    wr = csv.writer(myfile)
-    wr.writerows(dataSet)
+with open('engineDataset.csv', 'w') as train:
+    wr = csv.writer(train)
+    wr.writerows(trainingSet)
+
+with open('engineTestSet.csv', 'w') as test:
+    wr = csv.writer(test)
+    wr.writerows(testSet)
