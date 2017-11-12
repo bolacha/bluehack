@@ -7,7 +7,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import Slider from 'material-ui/Slider';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Pie, PieChart, Radar, RadarChart, PolarGrid, Legend,
-         PolarAngleAxis, PolarRadiusAxis} from 'recharts';
+         PolarAngleAxis, PolarRadiusAxis, LineChart, Line} from 'recharts';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import CircularProgress from 'material-ui/CircularProgress';
 
@@ -36,18 +36,15 @@ export default class TabsBar extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             slideIndex: 0,
+            consumoCarro: []
         };
     }
 
-    this.state = {
-        consumoCarro: []
-      };
-    }
-
     componentDidMount() {
-    axios.get(`http://www.reddit.com/r/${this.props.subreddit}.json`)
+    axios.get(`https://caranalitics.mybluemix.net/consumo`)
       .then(res => {
         const consumoCarro = res.data.data.children.map(obj => obj.data);
         this.setState({ consumoCarro });
@@ -63,12 +60,12 @@ export default class TabsBar extends React.Component {
   render() {
     return (
       <div>
-      
-    <LineChart width={300} height={150} data={consumoCarro}
+
+    <LineChart width={300} height={150} data={this.state.consumoCarro}
         margin={{top: 20, right: 30, left: 20, bottom: 5}}>
 
      <CartesianGrid strokeDasharray="3 3"/>
-     <Tooltip/>       
+     <Tooltip/>
      <XAxis dataKey="name"/>
      <YAxis/>
      <CartesianGrid strokeDasharray="3 3"/>
@@ -133,7 +130,7 @@ export default class TabsBar extends React.Component {
                             size={70}
                             thickness={5}
                         />
-                        Traseiro D. 
+                        Traseiro D.
                     </div>
                     <div style={ { padding: '50px 20px 0 20px;', float:'left', position : 'relative', width: '100px' } }>
                         <CircularProgress

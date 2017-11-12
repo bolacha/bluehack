@@ -1,0 +1,45 @@
+{
+    "AvailabilityMonitoring": [
+        {
+            "credentials": {
+                "cred_url": "https://perfbroker.ng.bluemix.net",
+                "token": "3M8BsllL+1s4PkOubkCn8UINk4osuoeOjLDc6nASpjboUeQs20s1tPF/z8hzZDKHcsgH17/XU/cg3uX1CaMPVWSktDoE1ERcibLtUtFK/J8="
+            },
+            "syslog_drain_url": null,
+            "volume_mounts": [],
+            "label": "AvailabilityMonitoring",
+            "provider": null,
+            "plan": "Lite",
+            "name": "availability-monitoring-auto",
+            "tags": [
+                "ibm_created",
+                "bluemix_extensions",
+                "dev_ops",
+                "lite"
+            ]
+        }
+    ],
+    "cloudantNoSQLDB": [
+        {
+            "credentials": {
+                "username": "fe8af477-c987-49f6-8cea-c37ba3035fe8-bluemix",
+                "password": "48c63a8cd676dc0ce9ae0f6b53b55eb4549e717dd240a27fecf186f7d3ac0859",
+                "host": "fe8af477-c987-49f6-8cea-c37ba3035fe8-bluemix.cloudant.com",
+                "port": 443,
+                "url": "https://fe8af477-c987-49f6-8cea-c37ba3035fe8-bluemix:48c63a8cd676dc0ce9ae0f6b53b55eb4549e717dd240a27fecf186f7d3ac0859@fe8af477-c987-49f6-8cea-c37ba3035fe8-bluemix.cloudant.com"
+            },
+            "syslog_drain_url": null,
+            "volume_mounts": [],
+            "label": "cloudantNoSQLDB",
+            "provider": null,
+            "plan": "Lite",
+            "name": "database",
+            "tags": [
+                "data_management",
+                "ibm_created",
+                "lite",
+                "ibm_dedicated_public"
+            ]
+        }
+    ]
+}
