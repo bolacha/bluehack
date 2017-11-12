@@ -103,8 +103,8 @@ export default class TabsBar extends React.Component {
           onChange={this.handleChange}
           value={this.state.slideIndex}
         >
-          <Tab label="Tab One" value={0} />
-          <Tab label="Tab Two" value={1} />
+          <Tab label="STATUS" value={0} />
+          <Tab label="DEALERS" value={1} />
         </Tabs>
         <SwipeableViews
           index={this.state.slideIndex}
