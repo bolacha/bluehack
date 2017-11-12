@@ -49,9 +49,6 @@ const CardExampleWithAvatar = () => (
   </Card>
 );
 
-
-
-
 const styles = {
   headline: {
     fontSize: 24,
@@ -114,13 +111,13 @@ export default class TabsBar extends React.Component {
             <Card>
                 <CardTitle title="Card title" subtitle="Card subtitle" />
                 <CardText>
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                    Óleo
                     <Slider defaultValue={0.8} />
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                    Água
                     <Slider defaultValue={0.6} />
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                    Bateria
                     <Slider defaultValue={0.7} />
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                    Freio
                     <Slider defaultValue={0.9} />
 
                     <Pie data={data02} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
@@ -129,6 +126,7 @@ export default class TabsBar extends React.Component {
             <Card>
                 <CardText>
                 <div>
+                  <h4>Pressão nos Pneus</h4>
                     <div style={ { padding: '50px 20px 0 20px;', float:'left', position : 'relative', width: '100px'} }>
                         <CircularProgress
                             mode="determinate"
@@ -136,6 +134,7 @@ export default class TabsBar extends React.Component {
                             size={70}
                             thickness={5}
                         />
+                        Dianteiro E.
                     </div>
                     <div style={ { padding: '50px 20px 0 20px;', float:'left', position : 'relative', width: '100px' } }>
                         <CircularProgress
@@ -144,6 +143,7 @@ export default class TabsBar extends React.Component {
                             size={70}
                             thickness={5}
                         />
+                        Dianteiro D.
                     </div>
                     <div style={ { padding: '50px 20px 0 20px;', float:'left', position : 'relative', width: '100px' } }>
                         <CircularProgress
@@ -152,6 +152,7 @@ export default class TabsBar extends React.Component {
                             size={70}
                             thickness={5}
                         />
+                        Traseiro D. 
                     </div>
                     <div style={ { padding: '50px 20px 0 20px;', float:'left', position : 'relative', width: '100px' } }>
                         <CircularProgress
@@ -160,6 +161,7 @@ export default class TabsBar extends React.Component {
                             size={70}
                             thickness={5}
                         />
+                        Traseiro E.
                     </div>
                 </div>
 
