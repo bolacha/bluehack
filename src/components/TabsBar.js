@@ -98,7 +98,6 @@ export default class TabsBar extends React.Component {
                     Freio
                     <Slider defaultValue={0.9} />
 
-                    <Pie data={data02} cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
                 </CardText>
             </Card>
             <Card>
