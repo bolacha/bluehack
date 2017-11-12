@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
+
+import AppBar from '../components/AppBar';
+import TabsBar from '../components/TabsBar';
 
 export default class LandingPage extends Component {
 
@@ -8,8 +12,9 @@ export default class LandingPage extends Component {
 
     render() {
         return(
-            <div className="container">
-                <h1 className="container"></h1>
+            <div>
+                <AppBar />
+                <TabsBar />
             </div>
         );
     }
