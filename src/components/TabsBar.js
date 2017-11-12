@@ -50,8 +50,10 @@ export default class TabsBar extends React.Component {
 
     constructor(props) {
         super(props);
+        
         this.state = {
             slideIndex: 0,
+            consumoCarro: []
         };
     }
 
