@@ -12,10 +12,6 @@ for i in range(7):
     goodCase = scipy.io.loadmat('../datasets/hs_gear_2_3_good/case2_'+str(i+1)+'.mat')['gs']
     goodCases.update({i:goodCase})
 
-for i in range(6):
-    goodCase = scipy.io.loadmat('../datasets/hs_gear_2_3_good/case3_'+str(i+1)+'.mat')['gs']
-    goodCases.update({7+i:goodCase})
-
 badRawData = []
 goodRawData = []
 
@@ -23,7 +19,7 @@ for i in range(11):
     for j in range(50):
         badRawData.append(badCases[i][j*10000:(j+1)*10000])
 
-for i in range(13):
+for i in range(7):
     for j in range(50):
         goodRawData.append(goodCases[i][j*10000:(j+1)*10000])
 
@@ -39,7 +35,7 @@ for i in range(len(goodRawData)):
 ffts = badFfts + goodFfts
 
 from sklearn.decomposition import PCA
-pca = PCA(n_components=10)
+pca = PCA(n_components=20)
 pca.fit(ffts)
 
 dataSet=[]
@@ -49,6 +45,14 @@ for i in range(len(badFfts)):
 
 for i in range(len(goodFfts)):
     dataSet.append(np.append(pca.transform(goodFfts[i].reshape(1,-1)),1))
+
+dataMatrix = np.matrix(dataSet)
+dataMins = dataMatrix.min(0)
+dataMaxs = dataMatrix.max(0)
+
+for i in range(len(dataSet)):
+    for j in range(len(dataSet[0])-1):
+        dataSet[i][j] = ( dataSet[i][j] - dataMins[0,j] ) / ( dataMaxs[0,j] - dataMins[0,j] )
 
 import csv
 
